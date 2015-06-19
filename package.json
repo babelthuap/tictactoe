@@ -1,0 +1,14 @@
+{
+  "name": "rovi.analytics.challenge.tictactoe",
+  "description": "Build a working tictactoe game, to demonstrate your ability",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "start": "http-server ./src -p 8008",
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "http-server": "^0.8.0",
+    "mocha": "^2.2.5"
+  }
+}
