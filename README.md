@@ -10,6 +10,8 @@ by writing javascript in `src/script.js`, and styles in `src/style.css`. Each of
 the nine buttons provided in the markup should correspond to the nine squares of
 a tic-tac-toe board.
 
+*You should not modify the body of the `src/index.html` file.*
+
 ## Requirements
 The complete game should adhere to the following:
 1. Button clicks should alternate between placing `X`s and `O`s
@@ -25,11 +27,11 @@ To run your code, you may simply open `src/index.html` in a web browser.
 Usage of jQuery is optional, it is included in the source, for your
 convenience.
 
-## Git
+## Git (optional)
 This directory is a git repository. If you have git installed, you may
 make any commits as you see fit.
 
-## Node
+## Node (optional)
 This directory is an npm package. If you have node/npm installed, you may use
 the following commands.
 
@@ -37,7 +39,7 @@ the following commands.
 - `npm start` - serve `src` at http://localhost:8008/
 - `npm test` - run unit tests
 
-## Unit Tests
+## Unit Tests (optional)
 Add any tests to `test/index.js`. An example has been provided.
 
 ## Submission
