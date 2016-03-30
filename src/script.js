@@ -1,7 +1,7 @@
 'use strict';
 
 /*
- * the board squares are laid out as follows:
+ * the board buttons are laid out as follows:
  *   1 2 3
  *   4 5 6
  *   7 8 9
@@ -38,34 +38,44 @@ function startGame() {
   };
 
   // initialize board
-  $('.btn').val(' ');
+  $('.btn').val(' ').css('color', 'black');
   $('.turn-indicator').text("X's turn").css('color', 'white');
   $('.restart').addClass('hidden');
 
   // handle button clicks
   $('.btn').on('click', function() {
-    var btnId = $(this).data('id');
-
     if ($(this).val() !== ' ') {
       return;
     }
 
-    $(this).val(whoseTurn);
+    $(this).val(whoseTurn); // mark the button
+    var btnId = $(this).data('id');
     claimedBy[whoseTurn].push(btnId);
     
-    // check for end-game conditions
-    if (isWinner(whoseTurn)) {
+    checkForEndGame();
+  });
+
+  function checkForEndGame() {
+    var winningCombo = isWinner(whoseTurn);
+
+    if (winningCombo) {
+      winningCombo.forEach(function(btnId) {
+        $('.btn:nth-of-type(' + btnId + ')').css('color', 'red');
+      });
       $('.btn').off('click');
       $('.turn-indicator').text(whoseTurn + ' Wins!').css('color', 'red');
       $('.restart').removeClass('hidden');
+
     } else if (claimedBy['X'].length + claimedBy['O'].length === 9) {
+      $('.btn').off('click');
       $('.turn-indicator').text('Tie Game!').css('color', 'green');
       $('.restart').removeClass('hidden');
+
     } else {
       whoseTurn = whoseTurn === 'X' ? 'O' : 'X';
       $('.turn-indicator').text(whoseTurn + "'s Turn");
     }
-  });
+  }
 
   var winningStates = [[1, 2, 3], [4, 5, 6], [7, 8, 9], // horizontals
                        [1, 4, 7], [2, 5, 8], [3, 6, 9], // verticals
@@ -73,8 +83,8 @@ function startGame() {
 
   function isWinner(whoseTurn) {
     for (var i = 0; i < winningStates.length; ++i) {
-      var isOwned = winningStates[i].every(function(square) {
-        return claimedBy[whoseTurn].indexOf(square) !== -1;
+      var isOwned = winningStates[i].every(function(btnId) {
+        return claimedBy[whoseTurn].indexOf(btnId) !== -1;
       });
 
       if (isOwned) {
