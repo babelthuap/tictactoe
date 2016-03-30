@@ -1,10 +1,10 @@
 'use strict';
 
 /*
- * conceptually, the board squares are laid out as follows:
- *   0 1 2
- *   3 4 5
- *   6 7 8
+ * the board squares are laid out as follows:
+ *   1 2 3
+ *   4 5 6
+ *   7 8 9
  */
 
 $(document).ready(function() {
@@ -14,7 +14,7 @@ $(document).ready(function() {
 
   // label buttons
   $('.btn').each(function(i) {
-    $(this).data('id', i);
+    $(this).data('id', i + 1);
   });
 
   // click handler for buttons
