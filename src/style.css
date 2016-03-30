@@ -1,7 +1,30 @@
 body {
   text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 hr {
   margin: 1em;
+}
+
+.board {
+  width: 350px;
+  margin: auto;
+}
+
+.btn {
+  background-color: #BBB;
+  border: 1px solid #000;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  margin: -3px;
+}
+
+.btn:hover {
+  background-color: #AAA;
+}
+
+.btn:focus {
+  outline: 0;
 }
