@@ -56,9 +56,9 @@ function startGame() {
   });
 
   function checkForEndGame() {
-    var winningCombo = isWinner(whoseTurn);
+    var winningCombo = getWinningComboIn(claimedBy[whoseTurn]);
 
-    if (winningCombo) {
+    if (winningCombo.length > 0) {
       winningCombo.forEach(function(btnId) {
         $('.btn:nth-of-type(' + btnId + ')').css('color', 'red');
       });
@@ -76,20 +76,26 @@ function startGame() {
       $('.turn-indicator').text(whoseTurn + "'s Turn");
     }
   }
+}
 
-  var winningStates = [[1, 2, 3], [4, 5, 6], [7, 8, 9], // horizontals
-                       [1, 4, 7], [2, 5, 8], [3, 6, 9], // verticals
-                       [1, 5, 9], [3, 5, 7]]; // diagonals
 
-  function isWinner(whoseTurn) {
-    for (var i = 0; i < winningStates.length; ++i) {
-      var isOwned = winningStates[i].every(function(btnId) {
-        return claimedBy[whoseTurn].indexOf(btnId) !== -1;
-      });
+var winningStates = [[1, 2, 3], [4, 5, 6], [7, 8, 9], // horizontals
+                     [1, 4, 7], [2, 5, 8], [3, 6, 9], // verticals
+                     [1, 5, 9], [3, 5, 7]]; // diagonals
 
-      if (isOwned) {
-        return winningStates[i];
-      }
+Array.prototype.containedIn = function(otherArray) {
+  return this.every(function(element) {
+    return otherArray.indexOf(element) !== -1;
+  });
+}
+
+// check for (and return) a winning position
+function getWinningComboIn(claimedSquares) {
+  var combo = [];
+  winningStates.forEach(function(state) {
+    if (state.containedIn(claimedSquares)) {
+      combo = combo.concat(state);
     }
-  }
+  });
+  return combo;
 }
