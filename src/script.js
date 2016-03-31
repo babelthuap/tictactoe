@@ -7,6 +7,9 @@
  *   7 8 9
  */
 
+!function() { // IIFE
+
+
 $(document).ready(init);
 
 
@@ -99,3 +102,6 @@ function getWinningComboIn(claimedSquares) {
   });
   return combo;
 }
+
+
+}(); // end IIFE
